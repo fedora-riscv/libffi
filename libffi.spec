@@ -1,5 +1,5 @@
 Name:		libffi
-Version:	3.0.1
+Version:	3.0.5
 Release:	1%{?dist}
 Summary:	A portable foreign function interface library
 
@@ -97,6 +97,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Tue Jul 08 2008 Anthony Green <green@redhat.com> 3.0.5-1
+- Upgrade to 3.0.5
+
 * Fri Feb 15 2008 Anthony Green <green@redhat.com> 3.0.1-1
 - Upgrade to 3.0.1
 
