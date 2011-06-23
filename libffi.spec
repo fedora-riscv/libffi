@@ -1,12 +1,14 @@
 Name:		libffi
 Version:	3.0.9
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
 License:	BSD
 URL:		http://sourceware.org/libffi
 Source0:	http://sourceware.org/libffi/libffi-%{version}.tar.gz
+# part of upstream commit 5feacad4
+Patch0:		%{name}-3.0.9-defines.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
@@ -52,6 +54,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1 -b .defines
 
 
 %build
@@ -97,6 +100,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Fri Mar 18 2011 Dan Horák <dan[at]danny.cz> - 3.0.9-2
+- added patch for being careful when defining relatively generic symbols
+
 * Tue Dec 29 2009 Anthony Green <green@redhat.com> - 3.0.9-1
 - Upgrade
 
