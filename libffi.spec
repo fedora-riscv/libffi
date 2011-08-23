@@ -1,6 +1,6 @@
 Name:		libffi
 Version:	3.0.10
-Release:	3%{?dist}
+Release:	1%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
