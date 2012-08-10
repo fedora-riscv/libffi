@@ -1,6 +1,6 @@
 Name:		libffi
-Version:	3.0.11
-Release:	2%{?dist}
+Version:	3.0.10
+Release:	3%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -98,6 +98,10 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Fri Aug 10 2012 Dennis Gilmore <dennis@ausil.us> - 3.0.10-3
+- drop back to 3.0.10, 3.0.11 was never pushed anywhere as the soname bump broke buildroots
+- as 3.0.11 never went out no epoch needed.
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.11-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
