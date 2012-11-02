@@ -1,12 +1,12 @@
 Name:		libffi
 Version:	3.0.10
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
 License:	BSD
 URL:		http://sourceware.org/libffi
-Source0:	http://sourceware.org/libffi/libffi-%{version}.tar.gz
+Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
 # part of upstream commit 5feacad4
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -98,6 +98,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Fri Nov 02 2012 Deepak Bhole <dbhole@redhat.com> - 3.0.10-4
+- Fixed source location
+
 * Fri Aug 10 2012 Dennis Gilmore <dennis@ausil.us> - 3.0.10-3
 - drop back to 3.0.10, 3.0.11 was never pushed anywhere as the soname bump broke buildroots
 - as 3.0.11 never went out no epoch needed.
