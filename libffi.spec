@@ -1,6 +1,6 @@
 Name:		libffi
-Version:	3.0.10
-Release:	4%{?dist}
+Version:	3.0.11
+Release:	1%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -98,6 +98,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Mon Jan 14 2013 Dennis Gilmore <dennis@ausil.us> - 3.0.11-1
+- update to 3.0.11
+
 * Fri Nov 02 2012 Deepak Bhole <dbhole@redhat.com> - 3.0.10-4
 - Fixed source location
 
