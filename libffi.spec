@@ -1,12 +1,14 @@
 Name:		libffi
 Version:	3.0.13
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
 License:	BSD
 URL:		http://sourceware.org/libffi
 Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
+# part of upstream commit 5feacad4
+Patch0:		libffi-3.0.13-fix-include-path.patch
 # part of upstream commit 5feacad4
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -53,6 +55,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
+%patch0 -p1 -b .fixpath
 
 
 %build
@@ -92,13 +95,16 @@ fi
 %files devel
 %defattr(-,root,root,-)
 %{_libdir}/pkgconfig/*.pc
-%{_libdir}/%{name}-%{version}
+%{_includedir}/ffi*.h
 %{_libdir}/*.so
 %{_mandir}/man3/*.gz
 %{_infodir}/libffi.info.gz
 
 %changelog
-* Fri Mar 22 2013 Anthony Green <green@redhat.com> - 3.0.13-1
+* Sat May 25 2013 Tom Callaway <spot@fedoraproject.org> - 3.0.13-2
+- fix incorrect header pathing (and .pc file)
+
+* Wed Mar 20 2013 Anthony Green <green@redhat.com> - 3.0.13-1
 - update to 3.0.13
 
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.11-2
