@@ -4,7 +4,7 @@
 #endif
 #define ffi_wrapper_h
 
-#elif defined(__i386__)
+#if defined(__i386__)
 #include "ffi-i386.h"
 #elif defined(__powerpc64__)
 #include "ffi-ppc64.h"

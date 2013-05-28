@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.0.13
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -122,6 +122,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Tue May 28 2013 Tom Callaway <spot@fedoraproject.org> - 3.0.13-4
+- fix typos in wrapper headers
+
 * Mon May 27 2013 Tom Callaway <spot@fedoraproject.org> - 3.0.13-3
 - make header files multilib safe
 
