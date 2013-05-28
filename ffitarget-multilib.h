@@ -4,7 +4,7 @@
 #endif
 #define ffitarget_wrapper_h
 
-#elif defined(__i386__)
+#if defined(__i386__)
 #include "ffitarget-i386.h"
 #elif defined(__powerpc64__)
 #include "ffitarget-ppc64.h"
