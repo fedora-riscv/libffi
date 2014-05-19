@@ -1,0 +1,11 @@
+--- libffi.pc.in~	2014-04-25 13:45:13.000000000 -0400
++++ libffi.pc.in	2014-05-19 12:58:22.354885178 -0400
+@@ -2,7 +2,7 @@
+ exec_prefix=@exec_prefix@
+ libdir=@libdir@
+ toolexeclibdir=@toolexeclibdir@
+-includedir=${libdir}/@PACKAGE_NAME@-@PACKAGE_VERSION@/include
++includedir=${libdir}/@includedir@
+ 
+ Name: @PACKAGE_NAME@
+ Description: Library supporting Foreign Function Interfaces

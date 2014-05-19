@@ -1,8 +1,8 @@
 %global multilib_arches %{ix86} ppc %{power64} s390 s390x x86_64
 
 Name:		libffi
-Version:	3.0.13
-Release:	5%{?dist}
+Version:	3.1
+Release:	0%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -12,7 +12,7 @@ Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
 # part of upstream commit 5feacad4
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
-Patch0:		libffi-3.0.13-fix-include-path.patch
+Patch0:		libffi-3.1-fix-include-path.patch
 # part of upstream commit 5feacad4
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -59,7 +59,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fixpath
+%patch0 -p0 -b .fixpath
 
 
 %build
@@ -83,8 +83,9 @@ basearch=i386
 # Do header file switcheroo to avoid file conflicts on systems where you
 # can have both a 32- and 64-bit version of the library, and they each need
 # their own correct-but-different versions of the headers to be usable.
+mkdir -p $RPM_BUILD_ROOT%{_includedir}
 for i in ffi ffitarget; do
-  mv $RPM_BUILD_ROOT%{_includedir}/$i.h $RPM_BUILD_ROOT%{_includedir}/$i-${basearch}.h
+  mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/$i.h $RPM_BUILD_ROOT%{_includedir}/$i-${basearch}.h
 done
 install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_includedir}/ffi.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
@@ -122,6 +123,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Mon May 19 2014 Anthony Green <green@redhat.com> - 3.1-0
+- update to 3.1.
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.0.13-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
