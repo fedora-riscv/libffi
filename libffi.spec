@@ -89,8 +89,10 @@ for i in ffi ffitarget; do
 done
 install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_includedir}/ffi.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
+%else
+  mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/$i.h $RPM_BUILD_ROOT%{_includedir}
 %endif
-
+rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -123,6 +125,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Mon May 19 2014 Anthony Green <green@redhat.com> - 3.1-1
+- fix non-multiarch builds (arm).
+
 * Mon May 19 2014 Anthony Green <green@redhat.com> - 3.1-0
 - update to 3.1.
 
