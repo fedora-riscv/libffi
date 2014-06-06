@@ -1,4 +1,4 @@
-%global multilib_arches %{ix86} ppc %{power64} s390 s390x x86_64
+%global multilib_arches %{ix86} ppc ppc64 ppc64p7 s390 s390x x86_64
 
 Name:		libffi
 Version:	3.1
@@ -79,18 +79,18 @@ basearch=%{_arch}
 basearch=i386
 %endif
 
+mkdir -p $RPM_BUILD_ROOT%{_includedir}
 %ifarch %{multilib_arches}
 # Do header file switcheroo to avoid file conflicts on systems where you
 # can have both a 32- and 64-bit version of the library, and they each need
 # their own correct-but-different versions of the headers to be usable.
-mkdir -p $RPM_BUILD_ROOT%{_includedir}
 for i in ffi ffitarget; do
   mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/$i.h $RPM_BUILD_ROOT%{_includedir}/$i-${basearch}.h
 done
 install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_includedir}/ffi.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %else
-  mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/$i.h $RPM_BUILD_ROOT%{_includedir}
+mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/{ffi,ffitarget}.h $RPM_BUILD_ROOT%{_includedir}
 %endif
 rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 
