@@ -2,19 +2,16 @@
 
 Name:		libffi
 Version:	3.1
-Release:	0%{?dist}
+Release:	1%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
 License:	BSD
 URL:		http://sourceware.org/libffi
 Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
-# part of upstream commit 5feacad4
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
 Patch0:		libffi-3.1-fix-include-path.patch
-# part of upstream commit 5feacad4
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -68,7 +65,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
@@ -94,9 +90,6 @@ mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/{ffi,ffitarget}.h $RPM_BU
 %endif
 rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 
 %post -p /sbin/ldconfig
 
@@ -112,12 +105,10 @@ fi
 
 
 %files
-%defattr(-,root,root,-)
 %doc LICENSE README
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root,-)
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/ffi*.h
 %{_libdir}/*.so
