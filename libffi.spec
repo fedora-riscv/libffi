@@ -56,7 +56,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p0 -b .fixpath
+%patch0 -p1 -b .fixpath
 
 
 %build
