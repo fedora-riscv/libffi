@@ -5,7 +5,7 @@
  libdir=@libdir@
  toolexeclibdir=@toolexeclibdir@
 -includedir=${libdir}/@PACKAGE_NAME@-@PACKAGE_VERSION@/include
-+includedir=${libdir}/@includedir@
++includedir=@includedir@
  
  Name: @PACKAGE_NAME@
  Description: Library supporting Foreign Function Interfaces
