@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -12,6 +12,7 @@ Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
 Patch0:		libffi-3.1-fix-include-path.patch
+Patch1:		libffi-3.1-fix-exec-stack.patch
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -57,6 +58,7 @@ developing applications that use %{name}.
 %prep
 %setup -q
 %patch0 -p1 -b .fixpath
+%patch1 -p1 -b .execstack
 
 
 %build
@@ -116,6 +118,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Sun Jun 29 2014 Anthony Green <green@redhat.com> - 3.1-4
+- fix exec stack problem on 32-bit build
+
 * Thu Jun 12 2014 Dan Horák <dan[at]danny.cz> - 3.1-3
 - fix header path in pkgconfig file
 
