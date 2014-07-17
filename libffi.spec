@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -107,7 +107,9 @@ fi
 
 
 %files
-%doc LICENSE README
+%{!?_licensedir:%global license %%doc}
+%license LICENSE
+%doc README
 %{_libdir}/*.so.*
 
 %files devel
@@ -118,6 +120,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Thu Jul 17 2014 Tom Callaway <spot@fedoraproject.org> - 3.1-5
+- fix license handling
+
 * Sun Jun 29 2014 Anthony Green <green@redhat.com> - 3.1-4
 - fix exec stack problem on 32-bit build
 
