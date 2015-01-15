@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	6%{?dist}
+Release:	7%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -13,6 +13,7 @@ Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
 Patch0:		libffi-3.1-fix-include-path.patch
 Patch1:		libffi-3.1-fix-exec-stack.patch
+Patch2:		libffi-aarch64-rhbz1174037.patch
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -59,6 +60,7 @@ developing applications that use %{name}.
 %setup -q
 %patch0 -p1 -b .fixpath
 %patch1 -p1 -b .execstack
+%patch2 -p1 -b .aarch64
 
 
 %build
@@ -120,6 +122,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Thu Jan 15 2015 Peter Robinson <pbrobinson@fedoraproject.org> 3.1-7
+- Add patch to fix issues on aarch64 (rhbz 1174037)
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.1-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
