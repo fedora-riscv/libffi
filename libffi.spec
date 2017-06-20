@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	10%{?dist}
+Release:	11%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -14,6 +14,7 @@ Source2:	ffitarget-multilib.h
 Patch0:		libffi-3.1-fix-include-path.patch
 Patch1:		libffi-3.1-fix-exec-stack.patch
 Patch2:		libffi-aarch64-rhbz1174037.patch
+Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -47,7 +48,7 @@ between the two languages.
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:       pkgconfig
+Requires:	pkgconfig
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
@@ -61,6 +62,7 @@ developing applications that use %{name}.
 %patch0 -p1 -b .fixpath
 %patch1 -p1 -b .execstack
 %patch2 -p1 -b .aarch64
+%patch3 -p1 -b .aarch64execstack
 
 
 %build
@@ -122,6 +124,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Tue Jun 20 2017 Anthony Green <green@redhat.com> - 3.1-11
+- fix exec stack problem on aarch64 build
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
