@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	11%{?dist}
+Release:	12%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -100,11 +100,11 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %post -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info --info-dir=%{_infodir} %{_infodir}/libffi.info.gz
+/sbin/install-info --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
 
 %preun devel
 if [ $1 = 0 ] ;then
-  /sbin/install-info --delete --info-dir=%{_infodir} %{_infodir}/libffi.info.gz
+  /sbin/install-info --delete --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
 fi
 
 %postun -p /sbin/ldconfig
@@ -124,6 +124,10 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Wed Jul  5 2017 Jens Petersen <petersen@redhat.com> - 3.1-12
+- protect install-info in the rpm scriptlets
+  https://fedoraproject.org/wiki/Packaging:Scriptlets#Texinfo
+
 * Tue Jun 20 2017 Anthony Green <green@redhat.com> - 3.1-11
 - fix exec stack problem on aarch64 build
 
