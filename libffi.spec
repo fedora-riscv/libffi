@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	13%{?dist}
+Release:	14%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -124,6 +124,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-14
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
