@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	14%{?dist}
+Release:	15%{?dist}
 Summary:	A portable foreign function interface library
 
 Group:		System Environment/Libraries
@@ -97,7 +97,7 @@ mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/{ffi,ffitarget}.h $RPM_BU
 rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 
 
-%post -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %post devel
 /sbin/install-info --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
@@ -106,8 +106,6 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 if [ $1 = 0 ] ;then
   /sbin/install-info --delete --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
 fi
-
-%postun -p /sbin/ldconfig
 
 
 %files
@@ -124,6 +122,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Sat Feb 03 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 3.1-15
+- Switch to %%ldconfig_scriptlets
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-14
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
