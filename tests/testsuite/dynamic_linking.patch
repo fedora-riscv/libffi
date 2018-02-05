@@ -1,0 +1,29 @@
+--- testsuite/lib/libffi.exp	2013-03-16 07:19:39.000000000 -0400
++++ testsuite/lib/libffi.exp	2014-10-22 11:10:42.449143642 -0400
+@@ -118,7 +118,7 @@
+     }
+     verbose "gccdir $gccdir"
+ 
+-    set ld_library_path "."
++    set ld_library_path ""
+     append ld_library_path ":${gccdir}"
+ 
+     set compiler "${gccdir}/xgcc"
+@@ -142,16 +142,13 @@
+ 
+     }
+ 
+-    # add the library path for libffi.
+-    append ld_library_path ":${blddirffi}/.libs"
+-
+     verbose "ld_library_path: $ld_library_path"
+ 
+     # Point to the Libffi headers in libffi.
+     set libffi_include "${blddirffi}/include"
+     verbose "libffi_include $libffi_include"
+ 
+-    set libffi_dir  "${blddirffi}/.libs"
++    set libffi_dir  "/usr/LIBRARY_DIR"
+     verbose "libffi_dir $libffi_dir"
+     if { $libffi_dir != "" } {
+ 	set libffi_dir [file dirname ${libffi_dir}]
