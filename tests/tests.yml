@@ -1,0 +1,17 @@
+---
+# This first play always runs on the local staging system
+- hosts: localhost
+  roles:
+  - role: standard-test-beakerlib
+    tags:
+    - classic
+    tests:
+    - testsuite
+    required_packages:
+    - libffi
+    - libffi-devel
+    - gcc
+    - dejagnu
+    - rpm-build
+    - gcc-c++
+    - strace
