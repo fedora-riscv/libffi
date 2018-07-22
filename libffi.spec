@@ -2,12 +2,11 @@
 
 Name:		libffi
 Version:	3.1
-Release:	17%{?dist}
+Release:	18%{?dist}
 Summary:	A portable foreign function interface library
-
-Group:		System Environment/Libraries
 License:	BSD
 URL:		http://sourceware.org/libffi
+
 Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
@@ -15,6 +14,8 @@ Patch0:		libffi-3.1-fix-include-path.patch
 Patch1:		libffi-3.1-fix-exec-stack.patch
 Patch2:		libffi-aarch64-rhbz1174037.patch
 Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
+
+BuildRequires: gcc
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -46,7 +47,6 @@ between the two languages.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
 Requires(post): /sbin/install-info
@@ -109,7 +109,6 @@ fi
 
 
 %files
-%{!?_licensedir:%global license %%doc}
 %license LICENSE
 %doc README
 %{_libdir}/*.so.*
@@ -122,6 +121,9 @@ fi
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Sun Jul 22 2018 Peter Robinson <pbrobinson@fedoraproject.org> 3.1-28
+- Fix FTBFS
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-17
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
