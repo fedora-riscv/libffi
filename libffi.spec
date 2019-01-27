@@ -49,8 +49,6 @@ between the two languages.
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
 Requires:	pkgconfig
-Requires(post): /sbin/install-info
-Requires(preun): /sbin/install-info
 
 %description	devel
 The %{name}-devel package contains libraries and header files for
@@ -98,15 +96,6 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 
 
 %ldconfig_scriptlets
-
-%post devel
-/sbin/install-info --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
-
-%preun devel
-if [ $1 = 0 ] ;then
-  /sbin/install-info --delete --info-dir=%{_infodir} %{_infodir}/libffi.info.gz || :
-fi
-
 
 %files
 %license LICENSE
