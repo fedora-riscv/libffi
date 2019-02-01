@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	18%{?dist}
+Release:	19%{?dist}
 Summary:	A portable foreign function interface library
 License:	BSD
 URL:		http://sourceware.org/libffi
@@ -110,6 +110,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.gz
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-19
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sun Jul 22 2018 Peter Robinson <pbrobinson@fedoraproject.org> 3.1-28
 - Fix FTBFS
 
