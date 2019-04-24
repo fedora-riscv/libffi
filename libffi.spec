@@ -2,7 +2,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	19%{?dist}
+Release:	20%{?dist}
 Summary:	A portable foreign function interface library
 License:	BSD
 URL:		http://sourceware.org/libffi
@@ -107,9 +107,12 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_includedir}/ffi*.h
 %{_libdir}/*.so
 %{_mandir}/man3/*.gz
-%{_infodir}/libffi.info.gz
+%{_infodir}/libffi.info.*
 
 %changelog
+* Wed Apr 24 2019 Björn Esser <besser82@fedoraproject.org> - 3.1-20
+- Remove hardcoded gzip suffix from GNU info pages
+
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-19
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
