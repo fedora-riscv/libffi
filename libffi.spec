@@ -2,9 +2,9 @@
 
 Name:		libffi
 Version:	3.1
-Release:	20%{?dist}
+Release:	21%{?dist}
 Summary:	A portable foreign function interface library
-License:	BSD
+License:	MIT
 URL:		http://sourceware.org/libffi
 
 Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
@@ -110,6 +110,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Jun 19 2019 Anthony Green <green@redhat.com> - 3.1-21
+- Fix license tag
+
 * Wed Apr 24 2019 Björn Esser <besser82@fedoraproject.org> - 3.1-20
 - Remove hardcoded gzip suffix from GNU info pages
 
