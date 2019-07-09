@@ -1,8 +1,10 @@
+%bcond_with bootstrap
+
 %global multilib_arches %{ix86} ppc ppc64 ppc64p7 s390 s390x x86_64
 
 Name:		libffi
 Version:	3.1
-Release:	21%{?dist}
+Release:	22%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -16,6 +18,10 @@ Patch2:		libffi-aarch64-rhbz1174037.patch
 Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
 
 BuildRequires: gcc
+%if %{without bootstrap}
+BuildRequires: gcc-c++
+BuildRequires: dejagnu
+%endif
 
 %description
 Compilers for high level languages generate code that follow certain
@@ -67,6 +73,10 @@ developing applications that use %{name}.
 %configure --disable-static
 make %{?_smp_mflags}
 
+%check
+%if %{without bootstrap}
+%make_build check
+%endif
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
@@ -110,6 +120,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Tue Jul  9 2019 Florian Weimer <fweimer@redhat.com> - 3.1-22
+- Run test suite during build (#1727088)
+
 * Wed Jun 19 2019 Anthony Green <green@redhat.com> - 3.1-21
 - Fix license tag
 
