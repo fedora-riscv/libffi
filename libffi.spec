@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	23%{?dist}
+Release:	24%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -120,6 +120,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-24
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-23
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
