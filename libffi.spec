@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	24%{?dist}
+Release:	25%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -16,6 +16,7 @@ Patch0:		libffi-3.1-fix-include-path.patch
 Patch1:		libffi-3.1-fix-exec-stack.patch
 Patch2:		libffi-aarch64-rhbz1174037.patch
 Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
+Patch4:		libffi-3.1-libffi_tmpdir.patch
 
 BuildRequires: gcc
 %if %{without bootstrap}
@@ -67,7 +68,7 @@ developing applications that use %{name}.
 %patch1 -p1 -b .execstack
 %patch2 -p1 -b .aarch64
 %patch3 -p1 -b .aarch64execstack
-
+%patch4 -p1 -b .libffitmpdir
 
 %build
 %configure --disable-static
@@ -120,6 +121,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Thu Apr 30 2020 DJ Delorie <idj@redhat.com> - 3.1-25
+- Add $LIBFFI_TMPDIR environment variable support (#1667620)
+
 * Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-24
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
