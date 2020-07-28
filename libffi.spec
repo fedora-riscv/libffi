@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	25%{?dist}
+Release:	26%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -121,6 +121,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-26
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
+
 * Thu Apr 30 2020 DJ Delorie <idj@redhat.com> - 3.1-25
 - Add $LIBFFI_TMPDIR environment variable support (#1667620)
 
