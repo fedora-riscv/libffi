@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.1
-Release:	26%{?dist}
+Release:	27%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -72,7 +72,7 @@ developing applications that use %{name}.
 
 %build
 %configure --disable-static
-make %{?_smp_mflags}
+%make_build
 
 %check
 %if %{without bootstrap}
@@ -80,7 +80,7 @@ make %{?_smp_mflags}
 %endif
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
@@ -121,6 +121,10 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Dec 02 2020 Carlos O'Donell <carlos@redhat.com> - 3.1-27
+- Use make macros
+- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-26
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
