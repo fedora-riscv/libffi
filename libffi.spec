@@ -1,10 +1,10 @@
 %bcond_with bootstrap
 
-%global multilib_arches %{ix86} ppc ppc64 ppc64p7 s390 s390x x86_64
+%global multilib_arches %{ix86} x86_64
 
 Name:		libffi
-Version:	3.1
-Release:	27%{?dist}
+Version:	3.4
+Release:	1%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -12,11 +12,6 @@ URL:		http://sourceware.org/libffi
 Source0:	ftp://sourceware.org/pub/libffi/libffi-%{version}.tar.gz
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
-Patch0:		libffi-3.1-fix-include-path.patch
-Patch1:		libffi-3.1-fix-exec-stack.patch
-Patch2:		libffi-aarch64-rhbz1174037.patch
-Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
-Patch4:		libffi-3.1-libffi_tmpdir.patch
 
 BuildRequires: gcc
 %if %{without bootstrap}
@@ -64,11 +59,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fixpath
-%patch1 -p1 -b .execstack
-%patch2 -p1 -b .aarch64
-%patch3 -p1 -b .aarch64execstack
-%patch4 -p1 -b .libffitmpdir
 
 %build
 %configure --disable-static
@@ -96,21 +86,17 @@ mkdir -p $RPM_BUILD_ROOT%{_includedir}
 # can have both a 32- and 64-bit version of the library, and they each need
 # their own correct-but-different versions of the headers to be usable.
 for i in ffi ffitarget; do
-  mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/$i.h $RPM_BUILD_ROOT%{_includedir}/$i-${basearch}.h
+  mv $RPM_BUILD_ROOT%{_includedir}/$i.h $RPM_BUILD_ROOT%{_includedir}/$i-${basearch}.h
 done
 install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_includedir}/ffi.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
-%else
-mv $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}/include/{ffi,ffitarget}.h $RPM_BUILD_ROOT%{_includedir}
 %endif
-rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
-
 
 %ldconfig_scriptlets
 
 %files
 %license LICENSE
-%doc README
+%doc README.md
 %{_libdir}/*.so.*
 
 %files devel
@@ -121,6 +107,9 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Dec 02 2020 Carlos O'Donell <carlos@redhat.com> - 3.4-1
+- Rebase to libffi 3.4.
+
 * Wed Dec 02 2020 Carlos O'Donell <carlos@redhat.com> - 3.1-27
 - Use make macros
 - https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
