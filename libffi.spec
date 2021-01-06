@@ -18,6 +18,7 @@ Patch2:		libffi-aarch64-rhbz1174037.patch
 Patch3:		libffi-3.1-aarch64-fix-exec-stack.patch
 Patch4:		libffi-3.1-libffi_tmpdir.patch
 
+BuildRequires: make
 BuildRequires: gcc
 %if %{without bootstrap}
 BuildRequires: gcc-c++
