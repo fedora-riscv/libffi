@@ -113,7 +113,7 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
-* Mon Jun 28 Carlos O'Donell <carlos@redhat.com> - 3.4.2-1
+* Mon Jun 28 2021 Carlos O'Donell <carlos@redhat.com> - 3.4.2-1
 - Rebase to libffi 3.4.2.
  
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-28
