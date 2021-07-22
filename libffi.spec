@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.4.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -113,6 +113,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Mon Jun 28 2021 Carlos O'Donell <carlos@redhat.com> - 3.4.2-1
 - Rebase to libffi 3.4.2.
  
