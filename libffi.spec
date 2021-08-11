@@ -62,9 +62,6 @@ developing applications that use %{name}.
 
 %build
 
-# Prevent rebuild within the mass rebuild.
-exit 1
-
 # For now we disable the static templates to avoid ghc and
 # gobject-introspection failures:
 # https://gitlab.haskell.org/ghc/ghc/-/issues/20051
