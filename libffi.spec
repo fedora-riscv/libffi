@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.4.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -57,7 +57,6 @@ Requires:	pkgconfig
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %prep
 %setup -q
 
@@ -107,7 +106,8 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/*.so.*
+%{_libdir}/libffi.so.8
+%{_libdir}/libffi.so.8.1.0
 
 %files devel
 %{_libdir}/pkgconfig/*.pc
@@ -117,6 +117,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Aug 11 2021 Carlos O'Donell <carlos@redhat.com> - 3.4.2-3
+- Rebuild package and bump NEVRA.
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
