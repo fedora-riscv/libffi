@@ -122,7 +122,7 @@ rm -rf $RPM_BUILD_ROOT%{_libdir}/libffi-%{version}
 %{_infodir}/libffi.info.*
 
 %changelog
-* Mon Jun 28 2021 Carlos O'Donell <carlos@redhat.com> - 3.1-29
+* Thu Aug 12 2021 Carlos O'Donell <carlos@redhat.com> - 3.1-29
 - Revert rebase to libffi 3.4.2.
 
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-2
