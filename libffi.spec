@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.4.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -47,7 +47,6 @@ layer of a fully featured foreign function interface.  A layer must
 exist above `libffi' that handles type conversions for values passed
 between the two languages.  
 
-
 %package	devel
 Summary:	Development files for %{name}
 Requires:	%{name} = %{version}-%{release}
@@ -61,7 +60,6 @@ developing applications that use %{name}.
 %setup -q
 
 %build
-
 # For now we disable the static templates to avoid ghc and
 # gobject-introspection failures:
 # https://gitlab.haskell.org/ghc/ghc/-/issues/20051
@@ -77,6 +75,7 @@ developing applications that use %{name}.
 
 %install
 %make_install
+
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
@@ -114,6 +113,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Wed Sep 15 2021 Carlos O'Donell <carlos@redhat.com> - 3.4.2-4
+- Harmonize spec file layout with downstream.
+
 * Wed Aug 11 2021 Carlos O'Donell <carlos@redhat.com> - 3.4.2-3
 - Rebuild package and bump NEVRA.
 
