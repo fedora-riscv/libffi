@@ -13,6 +13,9 @@ Source0:	https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.
 Source1:	ffi-multilib.h
 Source2:	ffitarget-multilib.h
 
+# https://github.com/libffi/libffi/pull/689
+Patch0:		libffi-3.4.2-ppc.patch
+
 BuildRequires: make
 BuildRequires: gcc
 %if %{without bootstrap}
@@ -57,7 +60,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 # For now we disable the static templates to avoid ghc and
@@ -113,6 +116,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Mon Jan 31 2022 Dan Horák <dan[at]danny.cz> - 3.4.2-8
+- Fix handling Float128 structs on ppc64le (#2045797)
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
