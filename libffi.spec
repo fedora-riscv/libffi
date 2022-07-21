@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.4.2
-Release:	8%{?dist}
+Release:	9%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -116,6 +116,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.2-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Mon Jan 31 2022 Dan Horák <dan[at]danny.cz> - 3.4.2-8
 - Fix handling Float128 structs on ppc64le (#2045797)
 
