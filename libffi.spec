@@ -4,7 +4,7 @@
 
 Name:		libffi
 Version:	3.4.4
-Release:	2%{?dist}
+Release:	2.rv64%{?dist}
 Summary:	A portable foreign function interface library
 License:	MIT
 URL:		http://sourceware.org/libffi
@@ -65,7 +65,12 @@ developing applications that use %{name}.
 # https://gitlab.haskell.org/ghc/ghc/-/issues/20051
 # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/283
 # We need to get these fixes into Fedora before we can reeanble them.
-%configure --disable-static --disable-exec-static-tramp
+%configure \
+  %ifarch riscv64
+  --libdir=%{_libdir} \
+  %endif
+  --disable-static \
+  --disable-exec-static-tramp
 %make_build
 
 %check
@@ -97,6 +102,14 @@ install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_includedir}/ffi.h
 install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %endif
 
+%ifarch riscv64
+# Print the content of buildroot
+find $RPM_BUILD_ROOT
+# Install libraries to a proper riscv64 libdir location
+mv -v ${RPM_BUILD_ROOT}%{_libdir}/lp64d/* ${RPM_BUILD_ROOT}%{_libdir}/
+rm -rf ${RPM_BUILD_ROOT}%{_libdir}/lp64d
+%endif
+
 %ldconfig_scriptlets
 
 %files
@@ -113,6 +126,9 @@ install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_includedir}/ffitarget.h
 %{_infodir}/libffi.info.*
 
 %changelog
+* Tue Feb 21 2023 David Abdurachmanov <davidlt@rivosinc.com> - 3.4.4-2.0.riscv64
+- Fix libdir for riscv64
+
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 3.4.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
